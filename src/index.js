@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import './styles/index.css';
 import { BrowserRouter } from 'react-router-dom';
+import { setContext } from '@apollo/client/link/context';
+import { AUTH_TOKEN } from './components/constants';
+
 import {
   ApolloProvider,
   ApolloClient,
@@ -12,23 +15,36 @@ import {
 
 // 2
 const httpLink = createHttpLink({
-  uri: 'https://eli456-eli456.cloud.okteto.net/graphql/'
+  uri: 'http://127.0.0.1:8000/graphql/'
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem(AUTH_TOKEN);
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `JWT ${token}` : ''
+    }
+  };
 });
 
 // 3
 const client = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache()
 });
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
 // 4
-ReactDOM.render(
+root.render(
   <BrowserRouter>
-    <ApolloProvider client={client}>
+  <ApolloProvider client={client}>
+    <React.StrictMode>
       <App />
-    </ApolloProvider>
-  </BrowserRouter>,
-  document.getElementById('root')
+    </React.StrictMode>
+  </ApolloProvider>
+  </BrowserRouter>
 );
 
 

@@ -1,8 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Header.css';
+import { AUTH_TOKEN } from "./constants";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const authToken = localStorage.getItem(AUTH_TOKEN);
+
   return (
 
     <div className="Encabezado">
@@ -32,10 +36,49 @@ const Header = () => {
                 Guardar_Flores
               </Link>
             </li>
+            <li>
+              <Link to="/text-davinci-003" className="no-underline black">
+                ObjetosIA
+              </Link>
+            </li>
+            <li>
+              <Link to="/imagenia" className="no-underline black">
+                ImagenesIA
+              </Link>
+            </li>
+            <li>
+              <Link to="/search" className="ml1 no-underline black">
+                search
+              </Link>
+            </li>
+            <li>
+              {authToken && (
+                <Link to="/login" className="ml1 no-underline black">
+                  Inicia Sesión
+                </Link>
+              )}
+              <div className="flex flex-fixed">
+                {authToken ? (
+                  <div
+                    className="ml1 pointer black"
+                    onClick={() => {
+                      localStorage.removeItem(AUTH_TOKEN);
+                      navigate(`/`);
+                    }}
+                    style={{ color: "white" }}
+                  >
+                    Cerrar Sesión
+                  </div>
+                ) : (
+                  <Link to="/login" className="ml1 no-underline black">
+                    Inicia Sesión
+                  </Link>
+                )}
+              </div>
+            </li>
           </ul>
         </nav>
       </div>
-
     </div>
   );
 };

@@ -70,14 +70,14 @@ const CreateFlores = () => {
       </section>
 
       <div id="Formulario-Info">
-        <p class="Espacio Espacio2" >Nombre de flor: </p>
-        <p class="Espacio Espacio2">Tipo de flor: </p>
-        <p class="Espacio Espacio2">Color de flor: </p>
+        <p class="Espacio Espacio2" >Nombre flor: </p>
+        <p class="Espacio Espacio2">Tipo flor: </p>
+        <p class="Espacio Espacio2">Color flor: </p>
         <p class="Espacio Espacio2">Cantidad flor: </p>
         <p class="Espacio Espacio2" >Fecha entrega: </p>
-        <p class="Espacio Espacio2">Ocasion arreglo: </p>
-        <p class="Espacio Espacio2">Precio arreglo: </p>
-        <p class="Espacio Espacio2">Forma de pago: </p>
+        <p class="Espacio Espacio2">Ocasion </p>
+        <p class="Espacio Espacio2">Precio </p>
+        <p class="Espacio Espacio2">Forma pago: </p>
         <p class="Espacio Espacio2">Existencias: </p>
         <p class="Espacio Espacio2">Direccion: </p>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+
 
 const languageMap = {
   en: { label: "English", dir: "ltr", active: true },
@@ -10,18 +10,14 @@ const languageMap = {
 
 const LanguageSelect = () => {
   const selected = localStorage.getItem("i18nextLng") || "en";
-  const { t } = useTranslation();
-  
 
-  const [ menuAnchor, setMenuAnchor] = React.useState(null);
-  
+  const [menuAnchor] = React.useState(null);
 
   React.useEffect(() => {
-    if (selected && languageMap[selected] && languageMap[selected].dir) {
+    if (selected && languageMap[selected] && languageMap[selected].dir){
       document.body.dir = languageMap[selected].dir;
     }
   }, [menuAnchor, selected]);
-  
 
   function changeLang(value) {
     //alert(value);

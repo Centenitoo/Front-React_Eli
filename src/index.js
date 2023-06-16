@@ -16,7 +16,7 @@ import {
 
 // 2
 const httpLink = createHttpLink({
-  uri: 'http://127.0.0.1:8000/graphql/'
+  uri: 'https://eli456-eli456.cloud.okteto.net/graphql/'
 });
 
 const authLink = setContext((_, { headers }) => {
